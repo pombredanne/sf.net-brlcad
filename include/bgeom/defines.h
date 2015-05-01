@@ -1,4 +1,4 @@
-/*                      T R I _ T R I . H
+/*                        D E F I N E S . H
  * BRL-CAD
  *
  * Copyright (c) 2004-2014 United States Government as represented by
@@ -19,55 +19,31 @@
  */
 
 /*----------------------------------------------------------------------*/
-/* @file tri_tri.h */
-/** @addtogroup tri_tri */
+/* @file defines.h */
+/** @addtogroup libgeom */
 /** @{ */
-
 /**
- * @brief
- * Tomas Möller's triangle/triangle intersection routines from the article
- *
- * "A Fast Triangle-Triangle Intersection Test",
- * Journal of Graphics Tools, 2(2), 1997
+ *  @brief Common definitions for the headers used in bgeom.h (i.e. the headers found in include/bgeom)
  */
 
-#ifndef BN_TRI_TRI_H
-#define BN_TRI_TRI_H
+#ifndef BGEOM_DEFINES_H
+#define BGEOM_DEFINES_H
 
 #include "common.h"
-#include "vmath.h"
-#include "bn/defines.h"
 
-__BEGIN_DECLS
+#ifndef BGEOM_EXPORT
+#  if defined(BGEOM_DLL_EXPORTS) && defined(BGEOM_DLL_IMPORTS)
+#    error "Only BGEOM_DLL_EXPORTS or BGEOM_DLL_IMPORTS can be defined, not both."
+#  elif defined(BGEOM_DLL_EXPORTS)
+#    define BGEOM_EXPORT __declspec(dllexport)
+#  elif defined(BGEOM_DLL_IMPORTS)
+#    define BGEOM_EXPORT __declspec(dllimport)
+#  else
+#    define BGEOM_EXPORT
+#  endif
+#endif
 
-BN_EXPORT extern int bn_tri_tri_isect_coplanar(point_t V0,
-					       point_t V1,
-					       point_t V2,
-					       point_t U0,
-					       point_t U1,
-					       point_t U2,
-					       int area_flag);
-
-BN_EXPORT extern int bn_tri_tri_isect(point_t V0,
-				      point_t V1,
-				      point_t V2,
-				      point_t U0,
-				      point_t U1,
-				      point_t U2);
-
-BN_EXPORT extern int bn_tri_tri_isect_with_line(point_t V0,
-						point_t V1,
-						point_t V2,
-						point_t U0,
-						point_t U1,
-						point_t U2,
-						int *coplanar,
-						point_t *isectpt1,
-						point_t *isectp2);
-
-__END_DECLS
-
-#endif  /* BN_TRI_TRI_H */
+#endif  /* BGEOM_DEFINES_H */
 /** @} */
 /*
  * Local Variables:
