@@ -55,6 +55,10 @@ CPL_CVSID("$Id: cpl_path.cpp 37866 2017-03-30 20:16:05Z rouault $");
 static const int CPL_PATH_BUF_SIZE = 2048;
 static const int CPL_PATH_BUF_COUNT = 10;
 
+#if defined(_MSC_VER)
+#include <direct.h>  
+#endif
+
 #if defined(WIN32)
 static const char SEP_STRING[] = "\\";
 #else
