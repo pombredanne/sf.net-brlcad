@@ -59,7 +59,7 @@
 
 CPL_CVSID("$Id: gml2ogrgeometry.cpp 37129 2017-01-12 21:15:15Z rouault $");
 
-#if HAVE_CXX11
+#if HAVE_CXX11 && !defined(_WIN32)
 constexpr double kdfD2R = M_PI / 180.0;
 constexpr double kdf2PI = 2.0 * M_PI;
 #else
