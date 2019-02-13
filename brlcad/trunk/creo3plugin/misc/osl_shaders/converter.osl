@@ -1,8 +1,0 @@
-surface converter 
-        [[ string description = "Convert a closure color to Ci" ]]
-(
-        closure color Cin = diffuse(N)
-)
-{
-        Ci = Cin;
-}

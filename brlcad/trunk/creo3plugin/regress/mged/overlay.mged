@@ -1,9 +1,0 @@
-puts "*** Testing 'overlay' command ***"
-
-Z
-overlay mged_plot_test.plot3
-make overlay_additional_shape.s epa
-e overlay_additional_shape.s
-ps mged_overlay_test.ps
-
-puts "*** 'overlay' testing completed ***"

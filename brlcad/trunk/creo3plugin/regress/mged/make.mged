@@ -1,6 +1,0 @@
-puts "*** Testing 'make' command ***"
-
-make_all_prims make -1
-make_all_prims make 42 sized_
-
-puts "*** 'make' testing completed ***"
