@@ -1,7 +1,0 @@
-puts "*** Testing 'sca' command in view mode***"
-
-size
-sca 100
-size
-
-puts "*** 'sca' testing in view mode completed ***"

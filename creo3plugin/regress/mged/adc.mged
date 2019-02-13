@@ -1,7 +1,0 @@
-puts "*** Testing 'adc' command ***"
-
-adc
-knob
-adc
-
-puts "*** 'adc' testing completed ***"

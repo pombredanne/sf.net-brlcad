@@ -1,5 +1,0 @@
-puts "*** Testing 'in' command ***"
-
-in_all_prims in
-
-puts "*** 'in' testing completed ***\n"

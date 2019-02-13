@@ -1,7 +1,0 @@
-puts "*** Testing 'sv' command ***"
-
-view center
-sv 76 19
-view center
-
-puts "*** 'sv' testing completed ***"

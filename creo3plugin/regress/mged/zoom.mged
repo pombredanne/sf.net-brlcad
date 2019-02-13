@@ -1,7 +1,0 @@
-puts "*** Testing 'zoom' command ***"
-
-size
-zoom 30
-size
-
-puts "*** 'zoom' testing completed ***"
