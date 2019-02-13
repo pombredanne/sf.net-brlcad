@@ -1,0 +1,412 @@
+
+# if GED command stuff is pushed into the actual subdirs, the autoconf vs cmake
+# verification (sh/cmakecheck.sh) will fail on dist-hook.  For now, just
+# handle it as part of libged
+if(BRLCAD_ENABLE_BULLET)
+  add_definitions(-DHAVE_BULLET=1)
+  set(LIBGED_CMD_INCLUDE_DIRS
+    ${LIBGED_CMD_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate
+    )
+  include_directories(SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate/bullet
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate/LinearMath
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate/BulletCollision
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate/BulletDynamics
+    ${CMAKE_CURRENT_SOURCE_DIR}/simulate/BulletSoftBody
+    )
+endif(BRLCAD_ENABLE_BULLET)
+include(simulate/bullet/CMakeLists.txt)
+
+if(ADAPTAGRAMS_FOUND)
+  set(LIBGED_CMD_LIBS_LIST ${LIBGED_CMD_LIBS_LIST} ${ADAPTAGRAMS_LIBRARIES})
+  set(LIBGED_CMD_INCLUDE_DIRS ${LIBGED_CMD_INCLUDE_DIRS} ${AVOID_INCLUDE_DIR})
+endif(ADAPTAGRAMS_FOUND)
+
+set(ENV_VARS_C "${CMAKE_CURRENT_BINARY_DIR}/env_vars.c")
+
+add_custom_command(OUTPUT ${ENV_VARS_C}
+  COMMAND env2c ${CMAKE_BINARY_DIR}/cmakefiles.cmake ${ENV_VARS_C}
+  DEPENDS env2c
+  COMMENT "[ENV2C] Scanning for environment variable usage"
+  )
+set_source_files_properties(env.c PROPERTIES OBJECT_DEPENDS ${ENV_VARS_C})
+DISTCLEAN(${ENV_VARS_C})
+
+set(LIBGED_SOURCES
+  ${LIBGED_SOURCES}
+  3ptarb.c
+  adc.c
+  adjust.c
+  ae2dir.c
+  aet.c
+  analyze.c
+  annotate.c
+  arb.c
+  arced.c
+  arot.c
+  attr.c
+  autoview.c
+  bb.c
+  bev.c
+  bigE.c
+  blast.c
+  bo.c
+  bot.c
+  bot_condense.c
+  bot_decimate.c
+  bot_dump.c
+  bot_face_fuse.c
+  bot_face_sort.c
+  bot_fuse.c
+  bot_flip.c
+  bot_merge.c
+  bot_smooth.c
+  bot_split.c
+  bot_sync.c
+  bot_vertex_fuse.c
+  brep.c
+  cat.c
+  cc.c
+  center.cxx
+  check/check.c
+  check/check_adj_air.c
+  check/check_centroid.c
+  check/check_exp_air.c
+  check/check_gap.c
+  check/check_mass.c
+  check/check_moments.c
+  check/check_overlaps.c
+  check/check_surf_area.c
+  check/check_unconf_air.c
+  check/check_volume.c
+  clone.c
+  coil.c
+  color.c
+  columns.c
+  comb.c
+  comb_color.c
+  comb_std.c
+  combmem.c
+  concat.c
+  constraint/constraint.c
+  copy.c
+  copyeval.c
+  copymat.c
+  cpi.c
+  dag.cpp
+  dbip.c
+  debugbu.c
+  debugdir.c
+  debuglib.c
+  debugnmg.c
+  decompose.c
+  delay.c
+  dir2ae.c
+  display_list.c
+  draw.c
+  draw_calc.cpp
+  dsp.c
+  dump.c
+  dup.c
+  eac.c
+  echo.c
+  edbot.c
+  edcodes.c
+  edcomb.c
+  edarb.c
+  edit.c
+  edit_metaball.c
+  editit.c
+  edmater.c
+  edpipe.c
+  env.c
+  erase.c
+  exists.c
+  expand.c
+  eye.c
+  eye_pos.c
+  facedef.c
+  facetize.c
+  fb2pix.c
+  fbclear.c
+  find.c
+  form.c
+  fracture.c
+  gdiff.c
+  ged.c
+  ged_util.c
+  get.c
+  get_autoview.c
+  get_comb.c
+  get_eyemodel.c
+  get_obj_bounds.c
+  get_solid_kp.c
+  get_type.c
+  glob.c
+  gdiff.c
+  gqa.c
+  grid.c
+  grid2model_lu.c
+  grid2view_lu.c
+  group.c
+  heal.c
+  help/help.cpp
+  hide.c
+  how.c
+  human.c
+  illum.c
+  importFg4Section.c
+  inside.c
+  instance.c
+  isize.c
+  item.c
+  joint.c
+  joint2.c
+  keep.c
+  keypoint.c
+  kill.c
+  killall.c
+  killrefs.c
+  killtree.c
+  label.c
+  lc.c
+  lint.cpp
+  list.c
+  loadview.c
+  lod.c
+  log.c
+  lookat.c
+  ls.c
+  lt.c
+  m2v_point.c
+  make.c
+  make_name.c
+  match.c
+  mater.cxx
+  mirror.c
+  model2grid_lu.c
+  model2view.c
+  model2view_lu.c
+  move.c
+  move_all.c
+  move_arb_edge.c
+  move_arb_face.c
+  mrot.c
+  nirt.c
+  nmg.c
+  nmg_make_v.c
+  nmg_mm.c
+  nmg_cmface.c
+  nmg_collapse.c
+  nmg_fix_normals.c
+  nmg_simplify.c
+  nmg_kill_v.c
+  nmg_kill_f.c
+  nmg_move_v.c
+  ocenter.c
+  open.c
+  orient.c
+  orotate.c
+  oscale.c
+  otranslate.c
+  overlay.c
+  path.c
+  pathlist.c
+  pathsum.c
+  perspective.c
+  pix2fb.c
+  plot.c
+  pmat.c
+  pmodel2view.c
+  png.c
+  png2fb.c
+  pnts_util.c
+  pnts.cpp
+  polyclip.cpp
+  prcolor.c
+  prefix.c
+  preview.c
+  process.c
+  protate.c
+  ps.c
+  pscale.c
+  pset.c
+  ptranslate.c
+  pull.c
+  push.c
+  put.c
+  put_comb.c
+  putmat.c
+  qray.c
+  quat.c
+  qvrot.c
+  rcodes.c
+  rect.c
+  red.c
+  regdef.c
+  region.c
+  remove.c
+  rfarb.c
+  rmap.c
+  rmat.c
+  rmater.c
+  rot.c
+  rot_point.c
+  rotate_about.c
+  rotate_arb_face.c
+  rotate_eto.c
+  rotate_extrude.c
+  rotate_hyp.c
+  rotate_tgc.c
+  rrt.c
+  rt.c
+  rtabort.c
+  rtcheck.c
+  rtwizard.c
+  savekey.c
+  saveview.c
+  scale.c
+  scale_ehy.c
+  scale_ell.c
+  scale_epa.c
+  scale_eto.c
+  scale_extrude.c
+  scale_hyp.c
+  scale_part.c
+  scale_rhc.c
+  scale_rpc.c
+  scale_superell.c
+  scale_tgc.c
+  scale_tor.c
+  screengrab.c
+  search.c
+  select.c
+  set_output_script.c
+  set_transparency.c
+  set_uplotOutputMode.c
+  setview.c
+  shaded_mode.c
+  shader.c
+  shells.c
+  shape_recognition.cpp
+  showmats.c
+  simulate/ged_command.cpp
+  simulate/rt_collision_algorithm.cpp
+  simulate/rt_collision_shape.cpp
+  simulate/rt_debug_draw.cpp
+  simulate/rt_instance.cpp
+  simulate/rt_motion_state.cpp
+  simulate/simulation.cpp
+  simulate/utility.cpp
+  size.c
+  slew.c
+  solid_report.c
+  solids_on_ray.c
+  sphgroup.c
+  summary.c
+  sync.c
+  tables.c
+  tire.c
+  title.c
+  tol.c
+  tops.c
+  tra.c
+  trace.c
+  track.c
+  translate_extrude.c
+  translate_tgc.c
+  tree.c
+  typein.c
+  unhide.c
+  units.c
+  v2m_point.c
+  vdraw.c
+  version.c
+  view.c
+  view2grid_lu.c
+  view2model.c
+  view2model_lu.c
+  view2model_vec.c
+  view_obj.c
+  viewdir.c
+  voxelize.c
+  vrot.c
+  vutil.c
+  wcodes.c
+  wdb_importFg4Section.c
+  whatid.c
+  which.c
+  which_shader.c
+  who.c
+  wmater.c
+  xpush.c
+  ypr.c
+  zap.c
+  zoom/zoom.c
+  ${LIBGED_CMD_SRCS}
+  )
+
+# Include directories needed by libged users
+set(GED_INCLUDE_DIRS
+  ${BRLCAD_BINARY_DIR}/include
+  ${BRLCAD_SOURCE_DIR}/include
+  ${ANALYZE_INCLUDE_DIRS}
+  ${BG_INCLUDE_DIRS}
+  ${BU_INCLUDE_DIRS}
+  ${FB_INCLUDE_DIRS}
+  ${NMG_INCLUDE_DIRS}
+  ${RT_INCLUDE_DIRS}
+  ${WDB_INCLUDE_DIRS}
+  )
+
+# Local include directories
+# includes from plugins
+set(GED_LOCAL_INCLUDE_DIRS
+  ${PNG_INCLUDE_DIR}
+  ${REGEX_INCLUDE_DIR}
+  ${LIBGED_CMD_INCLUDE_DIRS}
+  ${CMAKE_CURRENT_SOURCE_DIR}/../libbg
+  ${CMAKE_CURRENT_BINARY_DIR}
+  )
+
+BRLCAD_LIB_INCLUDE_DIRS(ged GED_INCLUDE_DIRS GED_LOCAL_INCLUDE_DIRS)
+
+if(BRLCAD_ENABLE_BULLET)
+  set(CADBULLET_LIBRARY cadbullet)
+endif(BRLCAD_ENABLE_BULLET)
+
+BRLCAD_ADDLIB(libged "${LIBGED_SOURCES}" "libwdb;librt;libnmg;libfb;libbg;libbn;libbu;libicv;libanalyze;${LIBGED_CMD_LIBS_LIST};${CADBULLET_LIBRARY};${REGEX_LIBRARY};${WINSOCK_LIB};${M_LIBRARY}")
+SET_TARGET_PROPERTIES(libged PROPERTIES VERSION 20.0.1 SOVERSION 20)
+
+add_subdirectory(tests)
+add_subdirectory(simulate/tests)
+
+BRLCAD_ADDEXEC(test_help help/test_help.c libged TEST)
+
+set(ged_ignore_files
+  CMakeLists.txt
+  TODO
+  pnts_util.h
+  ged_private.h
+  check/check_private.h
+  joint.h
+  qray.h
+  simulate/rt_collision_algorithm.hpp
+  simulate/rt_collision_shape.hpp
+  simulate/rt_debug_draw.hpp
+  simulate/rt_motion_state.hpp
+  simulate/rt_instance.hpp
+  simulate/simulation.hpp
+  simulate/utility.hpp
+  simulate/NOTES
+  osg.cpp
+  )
+CMAKEFILES(${ged_ignore_files})
+
+# Local Variables:
+# tab-width: 8
+# mode: cmake
+# indent-tabs-mode: t
+# End:
+# ex: shiftwidth=2 tabstop=8

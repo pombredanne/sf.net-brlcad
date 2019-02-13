@@ -1,0 +1,109 @@
+BRL-CAD on Max OS X README
+==========================
+
+Being that this is one of the newest architectures to be added and
+officially supported, there are some issues to keep in mind with the
+installation when building from the sources.  Beyond the notes
+provided here, building on Mac OS X can generally be considered the
+same as the UNIX, BSD, and Linux platforms.
+
+Table of Contents
+-----------------
+  Introduction
+  Table of Contents
+  CMake
+  X11 Window Server
+  Supported Versions
+  Mac OS X 10.2
+  Parallel Builds
+  Bugs
+
+CMake
+-----------------
+Kitware provides Mac OSX compilations of CMake:
+
+http://www.cmake.org/cmake/resources/software.html
+
+
+X11 Window Server
+-----------------
+You'll need to install an X11 server if you would like to build Tk and
+have a graphical user interface.  Apple's X11 is the recommended X
+Window Server, but XQuartz should work too and is often newer than the
+official Apple version:  http://xquartz.macosforge.org
+
+Supported Versions
+------------------
+BRL-CAD is generally only "extensively" tested by the developers on
+the latest released version of Mac OS X.  That is to say that
+although the BRL-CAD package should build on prior versions of the Mac
+OS X operating system, they are generally and eventually not
+maintained and will require additional effort to obtain a build.
+Compiling on 10.3 or 10.4 should complete successfully.  Due to a
+variety of significant application programming interface issues in
+early releases of Mac OS X, versions prior to 10.2 are unsupported.
+
+Parallel Builds
+---------------
+As many workstation and server systems shipped by Apple are
+multiprocessor systems, you can enjoy the benefits of decreased
+compile times by utilizing the "-j" option to make.  After running
+configure, run "make -j2" to build on a 2-processor system.
+
+Universal Builds
+----------------
+
+Universal builds have not been fully vetted due to how BRL-CAD
+serializes data to disk. BRL-CAD's CMake logic is not currently
+set up to support this type of build, but plans to in the future.
+
+CMake and Mac OSX
+-----------------
+
+On a default configuration, CMake has some problems performing parallel
+builds on OSX - typically this will manifest itself as a series of
+"too many open files" errors.  So far, the way to work around this in
+OSX 10.5 is to set the following system control variables to 50,000:
+
+kern.maxfiles
+kern.maxfilesperproc
+
+(check the current values using "sysctl <variable>" on the command line)
+
+and up the maxfiles limit in /etc/launchd.conf:
+
+limit maxfiles 50000 unlimited
+
+This is not widely tested, and OSX has quite a few limit settings that
+may or may not apply (and may change from one version to the next.)  As
+we get a better feel for various platforms we can assemble a table of
+required settings.  Other programs have this issue as well, so searching
+online may prove fruitful.
+
+So far, if parallel building doesn't work due to the above issue a
+non-parallel build will still succeed.  Another workaround is to build
+just subdirectories (e.g. src/other, doc, etc.) individually and then
+do a toplevel make in non-parallel mode to finalize the build.
+
+OpenSceneGraph and OSX
+----------------------
+For 32bit OSX builds of an X11+OpenSceneGraph BRL-CAD:
+cmake .. -DBRLCAD_BUNDLED_LIBS=BUNDLED -DBRLCAD_ENABLE_OSG=ON
+-DBRLCAD_REGEX=SYSTEM -DBRLCAD_WORD_SIZE=32BIT -DOSG_WINDOWING_SYSTEM=X11
+
+
+Tips
+----
+
+If you need to get information about your machine and OSX version, try
+these commands:
+
+sw_vers -productVersion
+uname -a
+
+Bugs
+----
+The only known bugs specific to Mac OS X are limitations of Tk or the
+X11 event handler that are generally outside of BRL-CAD's domain.
+Refer to BUGS for more general details on known bugs and reporting
+mechanisms.

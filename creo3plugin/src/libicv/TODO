@@ -1,0 +1,29 @@
+LIBICV To Do List
+==================
+
+* Add fileformats for bmp, rle, mac, ps(?), sun, spm, and yuv type
+  images.
+
+* Check that the icv tool is able to exactly reproduce the outputs
+  of the various fmt-fmt image conversion tools.  This is a
+  necessary precursor to deprecating those tools in favor of a
+  single icv tool.
+
+* FIX fixed size buffers in fileformat.c.
+
+* Make each file format a modular extension to the library (organized
+  as one file or one directory per format).
+
+* Support dynamically loading formats (e.g., define a plug-in API).
+
+* icv_image_t *icv_create(width, height)
+  icv_image_t *icv_clone(image)
+  int icv_destroy(image)
+  icv_image_t *icv_subimage(image, x, y, w, h)
+  icv_image_t *icv_load(filepath)
+  void icv_save(image, filepath)
+  size_t icv_width(image)
+  size_t icv_height(image)
+  
+---------------------------------------------------------------------
+TODO items should be formatted to column 70 (M-q in emacs), no tabs.

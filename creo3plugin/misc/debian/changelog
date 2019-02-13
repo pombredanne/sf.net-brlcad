@@ -1,0 +1,87 @@
+brlcad (7.28.2-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Cliff Yapp <cyapp@brlcad.org>  Thu, 29 Nov 2018 18:29:24 -0400
+
+
+brlcad (7.28.0-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Cliff Yapp <cyapp@brlcad.org>  Thu, 30 Sep 2010 23:05:54 -0400
+
+brlcad (7.26.4-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Cliff Yapp <cyapp@brlcad.org>  Thu, 22 Sep 2017 17:21:44 -0400
+
+
+brlcad (7.26.2-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Cliff Yapp <cyapp@brlcad.org>  Thu, 08 Jun 2017 18:39:57 -0400
+
+brlcad (7.26.0-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Wed, 18 May 2016 21:40:10 +0200
+
+brlcad (7.24.2-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Thu, 05 Sep 2013 23:44:51 +0200
+
+brlcad (7.24.0-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Mon, 25 Jun 2012 20:09:17 +0200
+
+brlcad (7.22.0-0) unstable; urgency=low
+
+  * update brlcad version
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Tue, 24 Jan 2012 21:53:52 +0100
+
+brlcad (7.20.4-0) unstable; urgency=low
+
+  * moved to CMAKE building
+  * changed mime-types names and mime-types icons names
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Wed, 24 Aug 2011 12:12:44 +0200
+
+brlcad (7.18.6-0) unstable; urgency=low
+
+  - new BRL-CAD release
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Sat, 16 Apr 2011 14:41:48 +0200
+
+brlcad (7.18.4-0) unstable; urgency=low
+
+  * add magic mime-type association for geometry db file v.4 and v.5
+  * add new mime-type icons for geometry db file v.4 and v.5
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Sat, 05 Mar 2011 23:10:51 +0100
+
+brlcad (7.18.2-0) unstable; urgency=low
+
+  * created new menu entries
+  * added new icons
+  * created new brlcad geometry mime-type
+  * added brlcad geometry file mime-type association
+  * switched from shared libraries to build-in ones
+  * switched --prefix from /usr to /usr/brlcad
+  * modified sh/make_deb.sh builder script
+
+ -- Jordi Sayol <g.sayol@yahoo.es>  Sat, 29 Jan 2011 12:05:33 +0100
+
+brlcad (7.16.10-1) unstable; urgency=low
+
+  * Initial release (Closes: #289632).
+
+ -- Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>  Wed, 25 Aug 2010 11:16:45 +0200

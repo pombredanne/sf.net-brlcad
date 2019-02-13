@@ -1,0 +1,60 @@
+###
+#
+# This is the BRL-CAD package file for Arch Linux.
+#
+# Contributor: Loui Chang <louipc.ist@NOSPAMgmail.com>
+#
+###
+pkgname=brlcad
+pkgdesc="An extensive 3D solid modeling CAD system."
+_major=$(cat ../../include/conf/MAJOR)
+_minor=$(cat ../../include/conf/MINOR)
+_patch=$(cat ../../include/conf/PATCH)
+pkgver=$_major.$_minor.$_patch
+pkgrel=1
+url="http://brlcad.org"
+license=('LGPL' 'BSD' 'custom:BDL')
+arch=('i686' 'x86_64')
+install=$pkgname.install
+makedepends=('bc' 'libxslt')
+depends=('boost' 'flex' 'libgl' 'libpng' 'mesa' 'tk' 'zlib')
+
+optdepends=(
+    'fop: for building pdf documentation'
+)
+
+options=('!libtool' '!strip' 'docs')
+
+_pkgprefix=/opt/$pkgname
+
+build() {
+    mkdir $srcdir/build
+    cd $srcdir/build
+
+    cmake $startdir/../../ \
+    -DCMAKE_INSTALL_PREFIX=${_pkgprefix} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBRLCAD_ENABLE_STRICT=OFF
+
+    make
+}
+
+package() {
+    cd $srcdir/build
+
+    make DESTDIR=$pkgdir install
+
+    mkdir -p $pkgdir/etc/profile.d
+    echo "export PATH=\$PATH:$_pkgprefix/bin" > $pkgdir/etc/profile.d/$pkgname.sh
+    chmod 755 $pkgdir/etc/profile.d/$pkgname.sh
+
+    mkdir -p $pkgdir/usr/share/licenses/$pkgname
+    cp $srcdir/../../doc/legal/bdl.txt \
+        $pkgdir/usr/share/licenses/$pkgname
+    cp $srcdir/../../doc/legal/bsd.txt \
+        $pkgdir/usr/share/licenses/$pkgname
+
+    mkdir -p $pkgdir/etc/ld.so.conf.d
+    echo ${_pkgprefix}/lib > $pkgdir/etc/ld.so.conf.d/$pkgname.conf
+}
+
