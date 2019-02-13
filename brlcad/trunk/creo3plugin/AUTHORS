@@ -1,0 +1,1274 @@
+						 -*- coding: utf-8 -*-
+BRL-CAD Contributors
+====================
+
+The BRL-CAD development team would like to take this opportunity to
+thank the many people and organizations who have contributed to make
+BRL-CAD the package it is today.
+
+BRL-CAD was originally conceived and written, for the most part, by
+the late Michael John Muuss.  He is our original primary architect and
+author.  His work lives on in testament to his intellect and
+indomitable spirit through the contributions and improvements by
+others.
+
+Over the years, Mike and the Advanced Computer Systems Team at the
+U.S. Army Research Laboratory (* see note) as well as many others
+around the world worked on developing BRL-CAD.  In December 2004,
+BRL-CAD development was opened and expanded with the conversion to
+Open Source.
+
+We strive to accurately and completely recognize the groups and
+individuals that have helped make BRL-CAD the package it is today.
+Contributors are grouped together and ordered chronologically with the
+earliest named first; likewise, the more recent contributors are
+listed at the bottom.
+
+Names are optionally followed by the date of their first contribution
+and a list of affiliations.  Individuals supporting and contributing
+to the project on their own time and of their own accord have an
+affiliation listed as "Open Source".
+
+BRL-CAD is the collective effort of many contributors (** see note).
+Developers are characterized as individuals that have made substantial
+contributions (hundreds or even thousands of features) to the project
+over an extended period of time (years or even decades).  Other
+contributor credits are organized into the following general
+categories depending on the level and type of involvement:
+
+  * Mathematical, Algorithmic, and Geometric Support
+  * Documentation, Artwork, and Website Contributors
+  * Code Contributors
+  * Special Thanks
+
+Participation and contributions are graciously appreciated and
+credited in following.
+
+
+ORIGINAL ARCHITECT AND AUTHOR
+-----------------------------
+
+"The future exists first in the imagination,
+then in the will, then in reality."
+		- Mike Muuss
+
+
+PROJECT ADMINISTRATORS
+----------------------
+
+Open Source Point of Contact
+  Morrison, Christopher Sean  <morrison@brlcad.org>
+
+U.S. Army Research Laboratory Point of Contact
+  Yapp, Cliff
+
+
+DEVELOPERS
+----------
+
+Muuss, Michael John
+nicknames mike
+1978 August (RCS: 1984 April)
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Applin, Keith A.
+1982
+U.S. Army Ballistic Research Laboratory
+
+Gwyn, Douglas A.
+nicknames gwyn
+1986 January
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Dykstra, Phillip
+nicknames phil
+1986 August
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Moss, Gary S.
+nicknames moss
+1986 September
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Kennedy, Charles Michael  <kermit@brlcad.org>
+nicknames kermit, g2asc
+1986 November
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Stay, Paul Randal
+nicknames stay
+1986 October
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+University of Utah
+
+Hanes, Jeff
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Johnson, Christopher T.  <cjohnson@cyberpaladin.com>
+nicknames cjohnson
+1989 February
+Cray Research, Inc.
+Geometric Solutions, Inc.
+Paladin Software
+JRMTech, Inc.
+
+Butler, Lee A.  <butler@arl.army.mil>
+nicknames butler, lbutler
+1989 July
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Tanenbaum, Paul J.
+nicknames pjt
+1991 January
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+
+Markowski, Michael J.  <michael.markowski@arl.army.mil>
+nicknames mmark, mm
+1991 June
+U.S. Army Ballistic Research Laboratory
+
+Durfee, Glenn Edward
+nicknames gdurf
+1992 August
+ARL Student Hire / Carnegie Mellon University
+
+Anderson, John R.  <jra@arl.army.mil>
+nicknames jra, johnranderson
+1993 May
+U.S. Army Ballistic Research Laboratory
+U.S. Army Research Laboratory
+Altus Engineering, Inc.
+Open Source
+
+Ross, Adam
+nicknames adam
+1995 October
+Geometric Solutions, Inc.
+
+Parker, Robert G.  **
+nicknames include bparker, bob1961
+1995 January
+U.S. Army Research Laboratory
+SURVICE Engineering, Inc.
+Open Source
+
+Morrison, Christopher Sean  <morrison@brlcad.org>  **
+nicknames sean, morrison, brlcad
+1998 December
+ARL Student Hire / Johns Hopkins University
+Quantum Research International, Inc.
+Open Source
+
+Bowers, Ronald Anthony
+nicknames rbowers
+2001 March
+U.S. Army Research Laboratory
+
+Christy, TraNese Shantell
+nicknames tranese
+2001 March
+U.S. Army Research Laboratory
+
+Hartley, Robert F.  <hartley@vt.edu>
+nicknames hartley
+2002 August
+ARL Student Hire / Virginia Tech
+
+Shumaker, Justin
+nicknames twingy, justin
+2003 June
+Quantum Research International, Inc.
+U.S. Army Research Laboratory
+
+Greenwald, Erik  <erikg@arl.army.mil>  **
+nicknames erikg, erikgreenwald
+2003 November
+U.S. Army Research Laboratory
+Open Source
+
+Roßberg, Daniel  **
+nicknames d_rossberg
+2005 June
+Industrieanlagen-Betriebsgesellschaft mbH (IABG)
+Open Source
+
+Yapp, Cliff  **
+nicknames starseeker
+2007 September
+Open Source
+Quantum Research International, Inc.
+U.S. Army Research Laboratory
+
+Bowman, W. Keith  **
+nicknames indianlarry
+SURVICE Engineering, Inc.
+U.S. Army Research Laboratory
+
+Weiss, Richard  **
+nicknames r_weiss
+2008 December
+U.S. Army Research Laboratory
+
+Browder, Thomas M. Jr.  **
+nicknames tbrowder2
+2008 June
+ManTech International Corporation
+Open Source
+
+Reed, Nicholas  **
+nicknames n_reed
+2008 July
+ARL Student Hire / University of Maryland, Baltimore County
+Quantum Research International, Inc.
+
+Moore, Jr., Carl G.  **
+nicknames cmoore, carlmoore
+2011 October
+U.S. Army Research Laboratory
+
+
+MATHEMATICAL, ALGORITHMIC, AND GEOMETRIC SUPPORT
+------------------------------------------------
+
+Weaver, Earl P.
+1980
+U.S. Army Ballistic Research Laboratory
+
+Davisson, Edwin O. **
+U.S. Army Research Laboratory
+
+Rogers, David
+U.S. Naval Academy
+
+Stiller, Peter
+1987-1988 (unverified)
+Texas A&M University
+
+Reed, Harry
+Geometric Solutions, Inc.
+U.S. Army Ballistic Research Laboratory
+
+Applin, Keith A.
+U.S. Army Research Laboratory
+
+Kregel, Dwayne  **
+SURVICE Engineering, Inc.
+
+Weaver, Stephanie 'Rain'  **
+2009 June
+ARL Student Hire / Bridgewater College
+
+
+DOCUMENTATION, ARTWORK, AND WEBSITE CONTRIBUTORS
+------------------------------------------------
+
+Weaver, Earl P.
+1980
+U.S. Army Ballistic Research Laboratory
+
+Schueler, Betty J.
+
+Edwards, Eric
+SURVICE Engineering, Inc.
+Open Source (Doc Camp)
+
+Kregel, Dwayne
+SURVICE Engineering, Inc.
+
+Leverington, Robert
+nicknames MinuteElectron
+2007 June
+Open Source
+
+Harder, Brad
+nicknames yukonbob, bharder, bch
+2007 September
+Method Logic Digital, Inc.
+
+Gettier, Janine
+2008 October
+SURVICE Engineering, Inc.
+
+Ilya
+nicknames ilya
+2008 December
+Open Source
+
+Giudice, Jesica
+nicknames jesica Nohla giudicejesica
+2009 December
+Open Source
+
+Jansa, Pavel
+nicknames pawleeq
+2011 November
+Open Source
+
+Mgebrova, Karen
+2012 February
+Open Source
+
+Elnazli, Cezar
+nicknames caen23
+2012 November
+Open Source (GCI)
+
+Burroughs, Jacob
+nicknames maths22
+2012 November
+Open Source (GCI)
+
+Stoyanova, Stefi
+2012 November
+Open Source (GCI)
+
+Perez, Alex
+2012 November
+Open Source (GCI)
+
+Singh, Harmanpreet
+nicknames harmanpreet
+2013 October
+Open Source (Doc Camp)
+
+Kamga, Isaac
+nicknames Izak, iiizzzaaakkk
+2013 October
+Open Source (Doc Camp)
+
+Check, Nyah
+nicknames Ch3ck
+2013 October
+Open Source (Doc Camp)
+
+Scott Nesbitt
+2013 October
+Open Source (Doc Camp)
+
+Wood, David
+2013 November
+Open Source (GCI)
+
+Agarwal, Yatharth
+2013 November
+Open Source (GCI)
+
+McDonald, Rob
+2013 November
+Open Source
+
+Tannous, Marc
+2014 December
+Open Source (GCI)
+
+Chiplunkar, Shardul
+nicknames microchip, shardulc
+2014 December
+Open Source (GCI)
+
+Juvekar, Mandar
+nicknames mandarj
+2014 December
+Open Source (GCI)
+
+Sofat, Hitesh
+nicknames sofat
+2015 June
+Open Source (GSoC)
+
+Sieu, Jeff
+2017 December
+Open Source (GCI)
+
+
+CODE CONTRIBUTIONS
+------------------
+
+Kingston III, Douglas P.
+nicknames dpk
+1983 December
+U.S. Army Ballistic Research Laboratory
+
+Hartwig, Jr., George W.
+U.S. Army Ballistic Research Laboratory
+
+Pistritto, Joseph C.
+U.S. Army Ballistic Research Laboratory
+
+Natalie, Ronald B.
+U.S. Army Ballistic Research Laboratory
+
+Toth, George E.
+U.S. Army Ballistic Research Laboratory
+
+Miles, Robert S.
+U.S. Army Ballistic Research Laboratory
+
+Reschly, Jr., Robert J.
+nicknames reschly
+1986 May
+U.S. Army Ballistic Research Laboratory
+
+Mermagen, Jr., William
+nicknames wm
+U.S. Army Research Laboratory
+
+Barker, Natalie L.
+Eberius, Natalie L.
+U.S. Army Research Laboratory
+
+Becker, David
+Cray Research
+
+Muuss, Susanne L.
+nicknames sue
+1989 February
+U.S. Ballistic Research Laboratory
+
+Dender, Daniel C
+U.S. Army Research Laboratory
+SURVICE Engineering, Inc.
+
+Hunt, Jim  <jhunt@ara.com>
+nicknames jehunt
+1991 May
+Applied Research Associates, Inc.
+U.S. Army Research Laboratory
+
+Coates, Susan A.
+nicknames scoates
+1991 September
+U.S. Ballistic Research Laboratory
+
+Ross, Brant A.
+General Motors, Inc.
+
+Lindemann, William
+Sun Microsystems, Inc.
+
+Smith, Timothy G.
+Sun Microsystems, Inc.
+
+Jackson, Christopher J.
+Sun Microsystems, Inc.
+
+Fiori, James D.
+Sun Microsystems, Inc.
+
+DiGiacinto, Tom
+U.S. Army Ballistic Research Laboratory
+
+Bowden, Mark Huston
+University of Alabama
+
+Suckling, Bob
+U.S. Army Ballistic Research Laboratory
+
+Gigante, Mike
+Royal Melbourne Institute of Technology
+
+Dray, Adam
+Geometric Solutions, Inc.
+
+Nuzman, Carl J.
+nicknames cnuzman
+1994 June
+ARL Student Hire / Princeton University
+
+Laut, Bill
+Gull Island Consultants, Inc.
+
+Hewitt, Terry
+Manchester-Computing Centre, UK
+
+Brand, Mario
+
+McCarty, Cormac
+nicknames mccarty
+1998 July
+ARL Student Hire / Johns Hopkins University
+
+Owens, Jason
+nicknames jlowens, jlowenz
+1998 July
+ARL Student Hire / Johns Hopkins University
+
+Yemc, David J.
+Johns Hopkins University Applied Physics Laboratory
+
+Anderson, David
+SGI
+
+Garriques, Jr., Rick
+SURVICE Engineering, Inc.
+
+Gillich, Michael John
+nicknames mjgillich mgillich
+2002 December
+U.S. Army Research Laboratory
+
+Howard, Doug
+nicknames dhoward
+SURVICE Engineering, Inc.
+2006 April
+
+Silva, Prasad Prometheus
+nicknames prasad_silva
+2006 May
+U.S. Army Research Laboratory
+
+James (swcto)
+Open Source
+
+Bonomo, Jonathan
+Open Source
+
+Myers, Timothy J.
+nicknames joevalleyfield
+2007 April
+U.S. Army Research Laboratory
+
+Li, Dongxu
+nicknames dongxu_li dli
+2007 April
+Open Source
+
+Poole, Ben
+nicknames poolio
+2007 June
+ARL Student Hire / Carnegie Mellon University
+
+Godbey, David
+nicknames dgodbey
+2008 March
+Altus Engineering, Inc.
+
+Montecelo, Manuel A. Fernandez
+nicknames mafm
+2008 April
+Open Source (GSoC)
+
+Castelo, André
+nicknames andrecastelo
+2008 May
+Open Source (GSoC)
+
+Van Ruitenbeek, Timothy
+nicknames pacman87
+2008 May
+Open Source (GSoC)
+
+Thomas, Dawn
+nicknames homovulgaris, madant
+2008 June
+Open Source (GSoC)
+
+Saunders, Benjamin
+nicknames Ralith, ralith
+2008 July
+Open Source
+
+Knaute, Philip
+2009 February
+Industrieanlagen-Betriebsgesellschaft mbH (IABG)
+
+Reeves, David D.
+nicknames dreeves
+2009 April
+Open Source
+
+Kennedy, Stephen
+nicknames irpguardian
+2009 June
+ARL Student Hire / University of Maryland, Baltimore County
+
+Shinn, Rob
+2010 April
+Open Source
+
+nicknames Alexandrus
+2010 July
+Open Source
+
+Hinesley, Brandon
+nicknames bhinesley
+2011 March
+Open Source (GSoC)
+
+Kunigami, Guilherme
+nicknames kunigami
+2011 March
+Open Source (GSoC)
+
+Jain, Sachin
+2011 April
+Open Source
+
+Gerstner, Nick
+2011 May
+SURVICE Engineering, Inc.
+
+Easterbrook, Zach
+nicknames lainiwakurax
+2011 July
+Open Source
+
+Nandy, Abhijit
+nicknames abhi2011
+2011 July
+Open Source (SOCIS)
+
+Silvko, Ksenija
+nicknames ksuzee
+2012 March
+Open Source (GSoC)
+
+Dueck, Chris R.
+nicknames crdueck
+2012 April
+Open Source (GSoC)
+
+Jianbang, Wu
+nicknames phoenix, phoenixyjll
+2012 April
+Open Source (GSoC)
+
+Precup, Cristina
+nicknames cprecup
+2012 April
+Open Source (GSoC)
+
+Murty, Anurag
+nicknames anrgmrty
+2012 May
+Open Source (GSoC)
+
+Oezdogan, Mesut
+nicknames kane_
+2012 May
+Open Source (GSoC)
+
+Taylor, Alex
+nicknames Al_Da_Best, aldabest
+2012 May
+Open Source (GSoC)
+
+Laijiren
+nicknames plussai2008
+2012 June
+Open Source (GSoC)
+
+Niculaescu, Oana
+nicknames elf11
+2012 August
+Open Source (SOCIS)
+
+Ungureanu, Silviu
+nicknames Silvrous
+2012 November
+Open Source (GCI)
+
+Kashyap, Akshay
+nicknames Skriptkid
+2012 November
+Open Source (GCI)
+
+Borisov, Dimitar
+2012 November
+Open Source (GCI)
+
+Pal, Ambar
+2012 November
+Open Source (GCI)
+
+Elnazli, Cezar
+nicknames caen23
+2012 November
+Open Source (GCI)
+
+Huang, Michael
+nicknames fernozzle
+2012 November
+Open Source (GCI)
+
+nicknames Reikaze
+2012 December
+Open Source (GCI)
+
+Phillips, Lachlan
+2012 December
+Open Source (GCI)
+
+Calle, Adrián Arroyo
+2012 December
+Open Source (GCI)
+
+Keesing, Aaron
+nicknames agkphysics
+2012 December
+Open Source (GCI)
+
+Govindjee, Arjun
+2012 December
+Open Source (GCI)
+
+Ramirez, Daniel
+nicknames javamonn
+2012 December
+Open Source (GCI)
+
+Nagy, Csaba
+nicknames ncsaba
+2013 April
+Open Source
+
+Check, Nyah
+nicknames Ch3ck
+2013 July
+Open Source (GSoC)
+
+Shah, Kesha
+nicknames keshashah
+2013 April
+Open Source (GSoC)
+
+Bogolin, Vlad
+nicknames vladbogo
+2013 May
+Open Source (GSoC)
+
+Kaur, Avneet
+nicknames avneetkhalsa
+2013 May
+Open Source (GSoC)
+
+Daga, Mohit
+nicknames zero_level, mohitdaga
+2013 June
+Open Source (GSoC)
+
+Kamga, Isaac
+nicknames Izak, iiizzzaaakkk
+2013 July
+Open Source (GSoC)
+
+Singh, Harmanpreet
+nicknames harmanpreet
+2013 May
+Open Source (GSoC)
+
+Huff, Emory
+nicknames hknoll
+2013 July
+ARL Student Hire
+
+Engbert, Jonathan
+nicknames ejno
+2013 July
+Open Source
+ARL Student Hire / University of Maryland, Baltimore County
+
+Andrew
+2013 November
+Open Source (GCI)
+
+Schulte, Johannes
+2013 November
+Open Source (GCI)
+
+Amidon, Peter
+nicknames peter-sa, Andromeda Galaxy
+2013 November
+Open Source (GCI)
+
+Chiplunkar, Shardul
+nicknames microchip
+2013 November
+Open Source (GCI)
+
+Берегов, Станислав
+2013 December
+Open Source (GCI)
+
+nicknames huskmate13
+2014 January
+Open Source
+
+Granroth, Gustave
+2014 May
+Open Source
+
+Jain, Rishub
+2014 July
+ARL Student Hire
+
+Roberts, Mitchell
+2014 July
+ARL Student Hire
+
+Bayes, Matthew
+nicknames klinger4077
+2014 July
+ARL Student Hire / University of Maryland College Park
+
+Mirea, Ștefan-Gabriel
+2014 October
+Open Source
+
+Krishna
+2015 January
+Open Source (GCI)
+
+Konrad, Djimeli
+2015 February
+Open Source
+
+Alexandre da Silva Costa, Vasco
+nicknames vasco_costa
+2015 April
+Open Source (GSoC)
+
+Thakkar, Kalpit
+nicknames dracarys983
+2015 May
+Open Source (GSoC)
+
+Ilinca, Andrei
+nicknames andrei_il
+2015 June
+Open Source (GSoC)
+
+Sofat, Hitesh
+nicknames sofat
+2015 June
+Open Source (GSoC)
+
+Hollister, Brad
+nicknames bhollister
+2015 July
+Open Source (GSoC)
+
+Hanji, Param
+2016 March
+Open Source (GSoC)
+
+Bagavathy, Rakshika
+nicknames tandoorichick
+2016 October
+Open Source (GSoC)
+
+Gao, Tianyue
+2016 December
+Open Source (GCI)
+
+Rathore, Shubham
+nicknames gabbar1947
+2017 April
+Open Source
+
+nicknames Rakete1111
+2017 November
+Open Source
+
+Narayan, Saran
+nicknames sharannyn
+2018 April
+Open Source (GSoC)
+
+
+SPECIAL THANKS
+--------------
+
+Weaver, Earl P.
+1980
+U.S. Army Ballistic Research Laboratory
+
+Henrikson, Bruce
+U.S. Army Ballistic Research Laboratory
+
+Wolff, Stephen
+U.S. Army Ballistic Research Laboratory
+
+Stanley, Charles
+U.S. Army Ballistic Research Laboratory
+
+Deitz, Paul
+U.S. Army Ballistic Research Laboratory
+
+Kuehl, Gary
+U.S. Army Ballistic Research Laboratory
+
+Martin, Glenn E.
+Northrop Research and Technology Center
+
+Willson, Stephen Hunter
+Northrop Research and Technology Center
+
+Merritt, Don
+nicknames merritt
+1988 September
+U.S. Army Ballistic Research Laboratory
+
+zum Brunnen, Rick
+U.S. Army Research Laboratory
+
+Smith, Jill
+U.S. Army Research Laboratory
+
+Monk, Mary
+U.S. Army Research Laboratory
+
+Spencer, Thomas W.
+University of Utah
+
+Buckley, Stephen
+nicknames steveb
+1988 August
+U.S. Army Ballistic Research Laboratory
+
+McKie, Jim
+
+Davies, Steve
+
+Turkowski, Ken
+
+Woods, James A.
+
+Orost, Joseph
+
+Strausser, Robert L.
+SURVICE Engineering, Inc.
+
+Lorenzo, Max
+CECOM Night Vision & Electronic Sensors Directorate
+
+Dome, John
+CECOM Night Vision & Electronic Sensors Directorate
+
+Florek, David
+CECOM Night Vision & Electronic Sensors Directorate
+
+Stoudenmire, Eugene A.
+CECOM Night Vision & Electronic Sensors Directorate
+
+Kekesi, Alex
+CECOM Night Vision & Electronic Sensors Directorate
+
+Pronk, Sander
+TNO Prins Maurits Laboratory
+
+Moulton, Jr., Russ
+EOSoft, Inc. (CECOM)
+
+Reed, Jr., Harry
+U.S. Army Ballistic Research Laboratory
+
+Slattery, Terry
+nicknames tcs
+1989 October
+U.S. Naval Academy
+
+Satterfield, Steve
+U.S. Naval Academy
+
+Johnson, Joe
+U.S. Naval Academy
+
+Woo, Alex
+University of Illinois
+
+Musgrave, F. Kenton
+
+Skinner, Robert
+
+Sebok, William L.
+
+Grosh, John
+nicknames jgrosh
+1993 October
+U.S. Army Research Laboratory
+
+Haywood, Heather
+U.S. Army Research Laboratory
+
+Ousterhout, John
+
+Williams, John P.
+QUADRA Enterprises
+
+Bokkers, Wim
+TNO Prins Maurits Laboratory
+
+Giffuni, Pedro
+Open Source
+
+Thomas, Balbir
+Open Source
+
+Remenak, Daniel T.
+nicknames DTRemenak, Erroneous, dtremenak
+2005 July
+California Institute of Technology
+Open Source
+
+Caruso, Mike
+Qryon LLC
+
+Arunaogun, Razak
+Qryon LLC
+
+Butkiewicz, Mark
+SURVICE Engineering, Inc.
+
+Kulhavy, Karel
+nicknames clock3
+Open Source
+
+Jacobs, Jan-Pieter
+nicknames jpjacobs
+2006 November
+Open Source
+
+Fiedler, Stefan
+Open Source
+
+Chang, Loui
+nicknames louipc
+2007 August
+Open Source
+
+Nabazas, Aldas
+2007
+Open Source
+
+Markus Elfring
+2007
+Open Source
+
+Ed Schouten
+2007
+Open Source
+
+Bautu, Elena
+nicknames ebautu
+2008 April
+Open Source
+
+Hocevar, Samuel
+nicknames sam, sammy
+2008 July
+Open Source
+
+Clubley, Simon
+2008 August
+Open Source
+
+Iuculano, Giuseppe
+nicknames devrevko
+2008 September
+Open Source
+
+Saika, Nikolai
+nicknames nicksaika
+2008 November
+Open Source
+
+Le, Van Hoa
+2009 February
+Science Applications International Corporation (SAIC)
+
+Tegtmeyer, Michael
+2009 July
+U.S. Army Research Laboratory
+
+Devanney, Jack
+2009 November
+Open Source
+
+Emton
+nicknames imcbml
+2009 November
+Open Source
+
+Mann, Cary
+2009 December
+ITT Corporation
+
+Lundahl, Östen
+2010 May
+Open Source
+
+Horn, Niels
+nicknames niels.horn
+2010 May
+Open Source
+
+Bishop, Bryan
+2010 June
+Open Source
+
+Lamaita, Luciano
+2010 June
+Open Source
+
+Anckaert, André
+2010 July
+Open Source
+
+Sayol, Jordi
+nicknames epileg, jordisayol
+2011 January
+Open Source
+
+Pitts, Christopher M.
+nicknames cmpitts
+2011 August
+Open Source
+
+Wang, Max
+nicknames wmaanxg
+2012 October
+Open Source
+
+Ha, An Tuan
+2012 December
+Open Source (GCI)
+
+Singh, Gauravjeet
+2012 December
+Open Source (GCI)
+
+Saxena, Amit
+nicknames amit.daBeast
+2012 December
+Open Source (GCI)
+
+Saini, Talwinder
+nicknames talwindersaini
+2013 July
+Open Source
+
+YuGin, Tan
+2013 November
+Open Source (GCI)
+
+nicknames mandar
+2013 December
+Open Source (GCI)
+
+Lotsu, Alexander
+nicknames Alex
+2013 December
+Open Source (GCI)
+
+Hyams, Daniel
+nicknames dhyams
+2014 February
+Open Source
+
+Reddy, Raj
+nicknames raj12lnm
+2014 May
+Open Source
+
+Malhotra, Shivoam
+nicknames shiv05
+2015 March
+Open Source
+
+Chepkwony, Benson
+nicknames bchepkwny
+2015 December
+Open Source
+
+Sagarwal
+2017 January
+Open Source (GCI)
+
+
+CORPORATE AND ORGANIZATION SUPPORT
+----------------------------------
+
+U.S. Army Research Laboratory
+  formerly named the U.S. Army Ballistic Research Laboratory
+Survivability and Lethality Analysis Directorate
+
+Sun Microsystems, Inc.
+
+University of Alabama in Huntsville
+
+U.S. Army Communications-Electronics Command (CECOM)
+Night Vision & Electronic Sensors Directorate
+
+U.S. Naval Academy
+
+Northrop Corporation
+Northrop Research and Technology Center
+
+SGI
+  formerly named Silicon Graphics, Inc.
+
+Geometric Solutions, Inc.
+
+JRMTech, Inc.
+
+SURVICE Engineering, Inc.
+
+Quantum Research Laboratory, Inc.
+
+Paladin Software, Inc.
+
+Manchester-Computing-Centre, UK
+Computer Graphics Unit, MCC
+
+Industrieanlagen-Betriebsgesellschaft mbH (IABG)
+
+TNO Prins Maurits Laboratory
+
+Free Software Foundation
+
+Open Source Technology Group
+  SourceForge.net, freshmeat.net
+
+Qryon LLC
+
+
+NEWS ARTICLES
+-------------
+
+Muuss, Mike
+"The BRL-CAD Package." Ray Tracing News. Vol 2, No 2. 1989/02/20
+
+"Designing with BRL-CAD." ITWorld.com, Linux Desktop Applications. 2000/12/14
+
+Wasmund, Thomas L.
+"New Model to Evaluate Weapon Effects and Platform Vulnerability: AJEM." WSTIAC NEWSLETTER. Vol 2, No 4. 2001/09
+
+Jackson, Joab
+"Open for business." Government Computer News. Vol 24, No 13. 2005/06/06
+
+
+---
+
+* The U.S. Army Research Laboratory (ARL) was formerly named the
+U.S. Army Ballistic Research Laboratory (BRL).  Persons who
+contributed entirely before the name change reflect the original name,
+whereas persons who continued or began contributions after the name
+change reflect the new name.
+
+** The individual is an active contributor, participating in BRL-CAD
+development within the past 12 months with numerous contributions.
+
+If any corrections or additions need to be made, please contact one of
+the active core developers.  Additionally, you may send inquiries,
+suggestions, and comments to the developer mailing list:
+brlcad-devel@lists.sourceforge.net

@@ -1,0 +1,675 @@
+BRL-CAD Bugs
+============
+
+Bugs should be reported to the bug tracker on the project website at
+http://sourceforge.net/tracker/?atid=640802&group_id=105292
+
+The bugs and issues listed in here may or may not be the same as or
+related to the bugs reported to the bug tracker.  In general, users
+should not look to this file for information regarding the status of
+bugs.  Informal bug-related information that is intended for
+developers will generally be found here.  This may include short term
+issues that are in active development as well as long term and
+on-going issues.
+
+Recent Bugs
+-----------
+
+* rt -t (render from top to bottom) is broken
+
+* rtsil command works if do what usage says and redirect output to
+  file, but mentions .pix when data is actually .bw; and using the -o
+  option results in a black image.  it is also inconsistent, writing a
+  black silhouette on a white background, instead of black on white
+  and missing background color options.
+
+* make sph sph
+  clone -i 1 -t 1000 0 0 -n 100 sph
+  kill sph
+  g line sph*
+  clone -i 1 -t 0 1000 0 -n 100 line
+  kill line
+  g square line*
+  clone -i 1 -t 0 0 1000 -n 100 square
+  ... never returns ...
+
+  This should be merely 1M spheres, but something chokes.  Could be
+  somewhere in the Tk layer.  Maybe somewhere in the db layer.  Maybe
+  something is corrupted by clone when it
+
+* If we draw any form, then trace it using rt, then change of database
+  (by clicking file>open and selecting another database), badness
+  ensues.  One report has quitting the rt window causing a segfault.
+  Another (confirmed) hung mged (stuck/inf loop).
+
+* annotation bugs:
+  in sph1.s sph 0 0 0 10
+  in ann1.s annot 0 0 0 test1 10 10 3 1
+  in ann2.s annot 30 30 30 test2 40 40 3 1
+  # ann2.s's label looks wrong, points at origin?
+  in ann3.s annot 0 0 0 1 10 10 3 1
+  # using numbers for a label results in no label
+
+* make eto eto
+  tol norm 1
+  facetize eto.bot eto
+  [crashes due to excessive recursion]
+
+* crash in rt_bot_xform() due to a bot being marked as having face
+  normals, but didn't.  bot probably written wrong via conversion
+  to/from obj or asc.  found importing teapot.
+
+* rtedge with perspective is wrong.  it fills in nearly entire faces,
+  vertically in particular.  it's worse on small sized renders, and
+  gets better the larger the render size (indicating there's some
+  neighbor distance coming into play that is not affected by
+  max_dist).  eoes not happen in non-perspective ray-traces.
+
+* a character is (still) sometimes captured by the cursor box.  steps
+  to reproduce:
+    1) write a word on the mged command prompt ("e.g. hello")
+    2) select the word to end of line with mouse
+    3) paste the word (e.g., middle mouse) and press enter
+    4) type "hello" again and press enter
+
+  you should now see an "o" in the yellow cursor box.  sometimes
+  you'll see the "o" after step 3.  running "clear" resets the cursor.
+
+* get_regions tcl command doesn't respond well to situations where
+  child object names in combs have dashes (the "-" character) in
+  names.  It tries to interpret the dash as an argument delimiter.
+  Looks like this may be only in situations where the "-" is the
+  lead character and on Windows?  Been hard to reproduce...
+
+* dsp does not facetize correctly with zero elevation areas in the
+  data - need robustness improvements
+
+* dsp primitives specifying data using Windows style file paths
+  don't work.
+
+* attempting to create a dsp using a binary object caused a crash on
+  Linux - need to figure out if this was caused by feeding it the wrong
+  kind of binary object or some other error...
+
+* screengrab on windows does not work
+
+* Recursive submodel predictably goes infinite, need stack-based
+  db_walk_tree(): mged> in submodel submodel submodel grid test.g
+
+* running rt -s20 -F file.pix ... does not result in an 20x20 image
+  being written out.  it ends up being 512x512.
+
+* running rt -C255/0/0 -o file.pix ... does not result in the
+  background color getting used.  It does work with -F file.pix, going
+  through libfb instead of libicv.
+
+* ogl display manager and framebuffer are creating windows with
+  transparent backgrounds (the glClear color is not being drawn) on
+  Linux.  Presumably a driver-related issue, alpha channel, or expose
+  event issue.  Inspecting further, it may be related to environments
+  where shmget() fails (or is requested via /dev/oglp) and we get
+  private memory -- looks like private memory is not initialized
+  (observed on Mac 10.6, Windows, and Ubuntu Linux using 7.26).
+
+* rtedge's overlay mode appears to be generating different results on
+  Windows and Linux for the m35 steering wheel (rtwizard rendering
+  mode D.)
+
+* pixdiff on Windows is reporting no differences with a pair of files
+  that pixcmp can see differences in.
+
+* fblabel seems quite busted, at least talking to a /dev/X fbserv, in
+  that it only draws the first character and eventually displays
+  rem_read() failures when run in -d debug mode.
+
+* rtedge doesn't refresh a /dev/X fbserv (presumably double-buffered)
+  after doing an overlay render.  it does draw, though, as confirmed
+  by a forced fb-fb refresh.
+
+* pixborder doesn't account for an edge case where the right edge of
+  an image is expected to be colored (except for one pixel on the top
+  edge).  Example:
+
+  pixborder -b "255 0 0" -t "255 255 255" < pix/moss.pix | pix-fb
+
+* report that attempting to change units on a read-only file in MGED
+  will not change the units in the file but changes them in MGED,
+  resulting in problems with nirt missing geometry it shouldn't miss.
+
+* typing 'comb -f -r assembly_name' shuts down mged with the error:
+  ERROR: bad pointer 0000000000B4CA50: s/b bu_external(x768dbbd0), was bu_vls(x89333bbb), file ..\..\..\brlcad_src\src\libbu\parse.c, line 2443"
+  And on the mged command line:
+  rt_db_cvt_to_external5 expecting non-NULL name parameter
+  wdb_export((null)): solid export failure
+
+* report of mged command history not working with the down arrow key
+  in 7.25.0 (on Windows, unknown on other platforms).  Up arrow works
+  fine.
+
+* wgl framebuffer is not lingering on windows (regardless of using
+  wgll or default) when it should
+
+* nirt -e "xyz val val val" doesn't work due to the space after the -e
+  and how the nirt/rt commands parse quoted args.
+
+* calling "attr set obj key value" should always result in key getting
+  set to value, no matter what, as it is the lowest-level attribute
+  management interface and what the command (correctly) documents.
+  example demonstrated to not work was: attr set obj rgb 123/123/123
+
+* report of LIBBU not working when accessed by a multithreaded
+  application on Windows.  reportedly due to some problem with the
+  debug memory queue.
+
+* report of g-iges crashing (on Windows) when exporting a 1.2MB BoT
+  mesh (presumably imported via stl-g).  worked for smaller models.
+
+* autoview [scale] isn't updating the wireframe when opening a
+  database, drawing geometry, then running autoview.  the status bar
+  shows the scale change, but the graphics window remains unaffected
+  unless you run "view size" to set it.
+
+* overlay command reports an error when trying to load a file
+  names edges.pl, but succeeds when the file is called patches.pl
+  Need to see why edges.pl is not accepted.
+
+* step-g crashing on mac with lazy symbol load failure missing:
+  brlcad::SurfaceTree::SurfaceTree(ON_BrepFace*, bool, int)
+
+* metaball tessellation enters either an infinite loop or an absurdly
+  long tessellation process - observed on Linux 64 bit system - quick
+  test:
+
+  rm -f metaball.g && mged -c metaball.g "make m.s metaball; facetize m.bot m.s"
+
+* corruption/crash issue rendering terra.g without terra.dsp,
+  possibly/probably parallel-related in libbn/noise.c's
+  bn_noise_turb() function.  gdb eventually catches a segfault in
+  find_spec_wgt() loop with indications of corrupted memory.  valgrind
+  confirms corrupted memory (8 bytes) after a build_spec_table()
+  realloc within find_spec_wgt() but it's not clear why.  etbl
+  book-keeping seems okay..  corrupted read consistently detected on
+  spec_wgts = ep->spec_wgts line in bn_noise_turb().  observed on
+  64-bit linux system:
+
+  rm -f terra.pix && valgrind bin/rt -o terra.pix -P1 -H3 -s1024 share/brlcad/7.21.0/db/terra.g all.g
+
+* mged 'joint' hold command isn't working. looks like the fp_names
+  book-keeping is fuxored or the db_lookup is returning NULL (or isn't
+  yet performed).
+
+* idents command is reporting a bogus region count in the region
+  output table listing (first column).
+
+* src/librt/primitives/bot/g_bot_include.c:rt_bot_bbox() routine isn't
+  calculating the bbox correctly
+
+* 'exists' command documentation claims more than has been implemented
+
+* rtxray crashes if you specify a -o *.bw output file due to
+  assumptions in the rt front-end that all output files are .pix
+
+* raytracing a revolved sketch seems to work fine, but rtarea and gqa
+  seem to be crashing on that same revolve.  curiously, the brep
+  revolve from the csgbrep proc-db has the same failure as well as the
+  brep ehy.
+
+* encountered a crash during rtarea on a (default) facetized version
+  of the hyp from the proc-db csgbrep tool.
+
+* raytracing rhc crashes (inside malloc, so previous memory badness)
+  with normal tolerance set to non-default value (e.g. tol norm 0.1);
+  also fails (non-crash) if absolute tolerance is changed (e.g., tol
+  abs 0.1)
+
+* revolve raytracing seems to be busted.. at least with the example
+  csgbrep revolve shape
+
+* torus with a near zero inner diameter results in zero-length edges
+  during tessellation.
+
+* opening a database in archer with the same name as a command doesn't
+  work.
+
+* bu_log() with a width specifier does not align like printf().
+  Example: bu_log("%24s", str);
+
+* report that "keep" sometimes results in a .g file with unknown units;
+  dbconcat also is reported to set the units to unknown if concatting
+  a file with unknown units.
+
+* infinite loop in rt_find_backing_dist() raytracing a BoT (without
+  pieces) for bot_smooth (i.e., rt_bot_smooth()).  encountered inf
+  loop on a jetski fastgen model that was solid but unoriented, with
+  about 8k faces.  NOTE: possibly already have a fix for this bug
+  pending review and testing.  --CSM
+
+* run make to create all primitives at the origin.  there are raytrace
+  differences, crashes, and overall bad behavior between default
+  ungrouped "e *" view and adding all of those primitives to a single
+  region.  Script for creating all primitives via make command:
+
+  for i in `mged -c test.g make asdf asdf 2>&1 | awk '{print $12}' | sed 's/[<>|]/ /g'` ; do mged -c test.g make $i $i ; done
+  mged -c test.g "g primitives *"
+  mged -c test.g r primitives.r u primitives
+  rt -a 35 -e 25 test.g primitives
+  rt -a 35 -e 25 test.g primitives.r
+
+* MGED on Mac OS X 10.6 mouse bindings fail to zoom in incrementally.
+  Pan, zoom out, and interactive zoom work.  Shift-grip bindings need
+  to be verified.
+
+* rt -i -s4096 -H16 -F/dev/null boolean-ops.g all
+
+* asc2g of a .asc file containing the first line as a "#" comment
+  results in a bu_malloc(0) bomb.  comment lines should be valid in
+  .asc files.
+
+* compilation reportedly fails when building Tcl if the path to the
+  source directory includes a space.
+
+* mged/tcl "gets" command doesn't work if you run the "source" command
+  to read in a script that uses gets on stdin.  it just hangs until
+  multiple sigint's are received.
+
+* invoking mged from a system menu seems to be broken.  reported by a
+  reliable ArchLinux user.  probably exhibits cross-platform on KDE,
+  GNOME, or XFCE (but original environment is unknown).  the bug is
+  undoubtedly related to mged's interactive and stdin/stdout input
+  detection where mged thinks it's being scripted (beginning on or
+  about mged.c:1150)
+
+* Report of copy/paste not working with Tk on Windows Vista - does
+  work on Windows XP.
+
+* Update/create .mgedrc results in bogus qray lines if a db is not
+  open when the file is created.
+
+* MGED doesn't initialize multipane view to the documented multipane
+  defaults if you just open a db with multipane already enabled.
+
+* Creating an 'extrude' via MGED gui crashes MGED.
+
+* edcomb command seems to be busted similar to red, doesn't seem to do
+  anything.
+
+* gqa manpage has the wrong indentation on the options write-up.
+
+* Detailed BoT model ray trace image had incorrect background pixel
+  values in framebuffer, off slightly by one.
+
+* ogl display manager still crashes on attach in mged on Mac OS X 10.5
+
+* rt is consuming 100% CPU in fb_close() on a lingering ogl
+  framebuffer waiting to close.  needs to sleep or select for a while.
+
+* /dev/oglb 'copy mode' fails to refresh the framebuffer
+
+* X display manager (and probably others) will lock up mged if you Z/B
+  while the wireframe is being actively drawn (in X_drawVList()).
+  reproducible by cloning havoc a dozen or more times, getting
+  sub-1sec fps, Z/B after rotating wireframe but before update
+  finishes drawing.
+
+* report of rt aborting randomly on 64-bit with camo shader.
+
+* mged raytrace fails with simple "raytrace failed" message when using
+  rt, nirt, etc. on Windows after modifying a region.  See sf bug
+  report 2954404.
+
+* mged rrt command is not respecting the view size, just does
+  something similar to autoview but even gets az/el wrong too.
+
+* Windows mged build is not generating tclIndex files with all
+  entries.  notably the pattern_gui.tcl file is not getting included
+  as well as a variety of others.  see missing entries in
+  tclscripts/mged/tclIndex for examples:
+  https://sourceforge.net/tracker/?func=detail&atid=640802&aid=2923199&group_id=105292
+
+* vdeck truncates the region names in the 'regions' file, probably
+  wrong bu_strlcpy() length.
+
+* hyp tessellation routine creates bot that does not raytrace
+
+* hyp used in a boolean with other objects (even unions) does not
+  raytrace
+
+* if you attach a display manager in tk-mged, kill the window, then
+  quit, mged crashes on exit.
+
+* mged segfaults when drawing lots of solids at once (e.g. draw *.s)
+
+* mged command mode doesn't display the output of multiple
+  semicolon-separated commands.  Only the output of the very last mged
+  command is displayed.  Example:
+
+  mged -c moss.g "tops ; title"
+  mged -c moss.g "puts OK ; tops ; puts OK2 ; title ; puts DONE"
+
+  Note that this is consistent with doing the same thing on the MGED
+  Command Window's command prompt - if the above is a bug it is
+  apparently not restricted to command/classic mode.
+
+  Further investigation suggests that this is a consequence of
+  Tcl treating multiple commands in a single " " block as one command,
+  insofar as capturing the output is concerned.  It probably relates
+  to situations where Tcl_SetResult is called where (in this case)
+  Tcl_AppendResult would have been better, but it is not clear whether
+  changing this result setting approach would cause other breakage.
+
+* mged rotation halts after a few events and after zooming in/out at
+  least once (Mac OS X 10.5)
+  More info:  This problem appears to be specific to a particular
+  X11 version or versions - it has been observed with
+  xorg-server-1.4.2-apple33 on 10.5.  It does not occur with the
+  community XQuartz 2.5.0 (xorg-server 1.7.6), nor does it occur
+  when Tk 8.5.8 is compiled to use the Aqua backend. At least one other
+  (possibly earlier) version of X11 from Apple on a 10.5 Mac did not
+  exhibit bad rotate behavior. The problem is not specifically the
+  zooming action - rather, the zoom triggers
+  a Tk focus call on the display manager window (rather than the
+  Tk parent window) and the problem manifests when focus is on the
+  display manager window.  mged classic mode, where there is no
+  parent window, exhibits the bad rotate behavior immediately.
+
+* infinite light sources close to objects result in unexpected/bad
+  light behavior.  example is a 1m sph light about 5m from a box about
+  1k x 1k x 1k in size.  setting make each light be red, green, and
+  blue respectively, set to infinite (and fraction 10) and sides to
+  the cube will render sides with a fixed color (green, blue) and top
+  magenta.  On one test with all lights at fraction 1.0 and only one
+  inf, was getting interleaved partial flat/no color all around cube.
+
+* fastgen plate mode bots are reporting invalid shotline segments.
+  depending on whether you shoot from the front or back can result in
+  bogus lists visible with nirt in mged, entirely missing the bot, or
+  mismatched entry/exit/overlap segments.
+
+* tab completion in classic/command mode sometimes doesn't work
+  (presumably if mged can't find tcl resources).  was finally able to
+  reproduce this with the result given as:
+
+  invalid command name "bind"
+
+* mged 'facetize -n' command is giving many errors:
+    ERROR: color index out of range (-128 > 255)
+  and it shouldn't.  seems to be happening on 3-manifold surfaces but
+  only for particular faces.  looks like the painting algorithm that is
+  being used is flawed (and an incomplete implementation).
+
+* running 'keep' on too many objects (hundreds is causing a usage
+  statement (and not doing the keep)
+
+* rtwizard won't display a line overlay if you line object is obscured
+  by another.  Example being to display a vehicle as ghost, crew as
+  solid, and crew as line.  confirmed even when using the other line
+  occlusion settings.
+
+* fbserv is receiving image data very slowly if the framebuffer is a
+  remote X24 interface.  could reproduce on mac with the following:
+
+  fbserv -s1024 1 /dev/X &
+  rt -F1 -s1024 db/moss.g all.g
+  rt -F1 -i -s1024 db/moss.g all.g  # 8x worse
+
+* ls -A and/or e -A reportedly crashes on use, unverified
+
+* File->Export seems to not work on Windows
+
+* xpush fails to properly create a hierarchy killing existing objects
+  resulting in dangling references. This may have been fixed by
+  r69256, but a model that exposes the issue has to be tested to be
+  sure.
+
+* mged on Mac OS X will crash on an X11 call if compiled against
+  system Tcl/Tk (at least on 10.4 linking against 8.4), see TODO
+
+* the ray tracer fails to report LOS and sometimes even hits on a BoT
+  that is marked as unoriented or is inverted (even though it
+  sometimes will report the segments, just without LOS).  this seems
+  to happen for bots that are neither lh or rh (they're mixed) and
+  causes the raytrace to fail if they're set to anything other than
+  'no' for orientation.  this affects rt, nirt, et al.
+
+* g-vrml ignores bots that are created with dxf-g
+
+* Mac OS X installer doesn't include the symbolic links, only
+  including the versioned installation directory.
+
+* Mouse cursor turns into a huge yellow-translucent arrow when running
+  MGED through remote X11.
+
+  Running this fixes the bug: .id_0t config -cursor "xterm black"
+
+* mged (on debian) is reporting this when the user presses tab:
+  Error in bgerror: invalid command name "::swidgets::togglearrow"
+  the second time they press tab, they get:
+  Error in bgerror: window name "_secErrorDialog" already exists in parent
+
+  The problem was noticed on 7.12.4 and happens regardless of there
+  being a db opened or not.  The problem does not occur in classic
+  mode.
+
+* mged command window is showing up as an empty 0x0 dimensioned window
+  on freebsd using xfce and metacity (single display, 1680x1050 res).
+  dm shows up just fine.
+
+* g2asc of a v4 is apparently writing out the wrong s_cgtypes and
+  otherwise parsing v4 .g files incorrectly
+
+* bump shader seems to be busted.  only renders as flat by itself and
+  stacked with phong it seems to ignore the uv settings.
+
+* the graphics window does not acquire keybinding focus in mged on
+  ubuntu linux.  key events go to the command window even with the
+  graphics window has focus.
+
+* MGED File->Preferences->Fonts results in error "named font "button
+  _font" doesn't exist on Linux.
+
+* mged tab-completion doesn't work if the object names have spaces
+
+* Open dialog in MGED seems rather busted for scrolling and selection
+  (seems to be Mac OS X specific)
+
+* turning on Framebuffer->Rectangle Area in mged disables the
+  embedded framebuffer display on Mac OS X when you sweep a raytrace
+  rectangle.  sweeping still works if you leave it at All.
+
+* invalid shaders result in an "Unable to locate where BRL-CAD ... is
+  installed" message that refers to being unable to find a
+  /lib/libSHADER.so file.  Quite a bogus message and probably not
+  something that should abort the ray-trace.
+
+* rtedge seems to get stuck in a loop at the end of rendering, never
+  terminates (unless you rtabort/kill the process); works with -P1
+
+* nirt/query_ray reports intersection messages in triplicate if the
+  shot routines miss but still print out messages
+
+* mged's plot tool (the gui one, not the 'plot' command) outputs a
+  plot file that has an erase as the last command, causing empty plots
+
+* interactive mouse edits in mged can go haywire on Mac OS X with
+  snap-to-grid enabled
+
+* overlap tool in mged encourages very inefficient CSG operations
+  (e.g. a simple bolt with an entire hull armor subtracted)
+
+* permute (in mged) requires apply or save before 'new' vertex values
+  will function properly as keypoints.
+
+* facedef then move face undoes the facedef in mged
+
+* dsp primitive is going into what seems to be an unbounded memory
+  allocation loop during prep, inside dsp_layers().
+
+* crashes during photonmap raytrace of m35 where right node is invalid
+  rt -o test.pix -V 1.0 -P4 -J0 -l7 -A0 ~/Desktop/m35.g all.g box.r sph.r
+
+* libfb cannot utilize standard output/error "device" files without
+  path trickery.  it recognizes the /dev/ prefix and presumes it's a
+  libfb device instead of a filesystem device.
+
+   OK: rt -F/./dev/stdout
+  BAD: rt -F/dev/stdout
+
+* libfb cannot open a file descriptor when piping/redirecting output.
+
+   OK: rt -F/./dev/stdout moss.g all.g
+  BAD: rt -F/./dev/stdout moss.g all.g > test.pix
+
+* ray-tracers assume a seekable output stream.  libfb reports numerous
+  fseek errors and outputs slightly corrupted pix data.
+
+   OK: rt -o test.pix moss.g all.g && pix-png test.pix > test.png && rm -f test.pix
+  BAD: rt -o /dev/stdout moss.g all.g | pix-png > test.png
+
+* running any of the various mged commands (e.g. clicking the raytrace
+  button many times quickly, or running rtarea on a large model) that
+  output a lot of data will hang mged (idle cpu utilization).
+
+* solids.sh regression test fails on Mac OS X with one pixel
+  off-by-many on the edge of the middle ARB8 when using an optimized
+  -O3 compile (-fno-unsafe-math-optimizations makes no difference)
+
+* triangulation of some pipe in toyjeep.g fails (rather reliably) on
+  some given bend.  fails in nmg_triangulate model().
+
+* fbhelp sends some of the output to stdout and some to stderr...
+
+* debugbu 2 immediately reports a bu_vls_free() error.. apparently
+  been a problem since 4.5 days.  this occurs because
+  bu_memdebug_add() is not called unless memory checking is enabled
+  via bu_debug.  so when bu_debug is set to 2 or 3, it ends up
+  reporting errors during bu_free() for items that were allocated and
+  were not yet being tracked.
+
+* mged View menu says I and O are keybindings for zoom in/out -- they
+  are apparently not.
+
+* raytracers report the wrong amount of cumulative time (reports as
+  0.0 seconds elapsed) on amd64 linux; most likely the same pthread
+  accounting bug visited a couple years ago.
+
+* Create menu.. create "part" boo hiss..
+
+* wavelet isn't working correctly on a simple image decomposition &
+  reconstruction.
+
+* query_ray can't find nirt if not installed
+
+* fbed is looking for /usr/lib/vfont/nonie.r.12
+
+* mged doesn't check if html_dir does not exist when searching for
+  docs/browser.
+
+* permute then translate doesn't refresh the graphics window
+    permute 4378
+    translate menus
+    p 0 0 0
+    p 0 0 0
+
+* constrained axis translation bindings on OS X don't work
+    object/matrix edit
+    shift-alt mouse (left/mid/right for x/y/z respectively) should work
+
+* the findfont directive in gv postscript is reporting font not found
+
+* concave arbs give correct wireframe but do not raytrace correctly.
+
+* rtwizard/rtedge creates incorrect "fuzzy" edge overlay when creating
+  a "Ghost Image with Insert and Lines" that includes a light source
+  and object close to surface (e.g. moss.g; select plane, light, and
+  cone for ghost; select cone for insert and lines.)
+
+* mged's solid illuminate doesn't work when Lighting is turned on
+
+* raytrace of zoomed images (e.g., -s64) doesn't work for if_X24
+  framebuffers.  zooming logic seems to be broken (was crashing in
+  memcpy, but that was fixed) for at least -s96 and smaller:
+
+  ./libtool --mode=execute gdb --args src/rt/rt -F/dev/X -P1 -s64 db/moss.g all.g
+
+* g2asc exports attr lines but will not grok them on asc2g
+
+* mged's matrix selection does not modify the correct matrix if there
+  are multiply referenced non-unique paths (e.g. referencing the same
+  object N times in a combination).
+
+* facetize -t doesn't work (tnurb support)
+
+* on os x, the -fast option results in an odd optimization/aliasing
+  bug where rtip contents are lost in rt after returning from
+  rt_gettrees().
+
+* tra in console mode outputs a warning about mged_players
+
+* mged primitive editor doesn't accept/apply values to disk for
+  certain primitives (e.g. sph)
+
+* photon map cache file doesn't work (seems to crash rt on use)
+
+* enabling perspective mode horks shaded mode, also Z clipping
+  shouldn't be required to get the shading.
+
+* an underlay framebuffer does not underlay with shaded mode
+
+* rtweight chokes on a .density file that has less than 3 values per
+  line (infinite loop).  also gives infinite areas when presented with
+  an empty .density file.
+
+* rtarea gives incorrect areas when using -H hypersample flag
+
+* rtweight/gqa volumes seem wrong with simple sphere test case, with
+  values consistently and quickly converging less than the actual
+  volume regardless of the grid size.
+
+* setting src/librt/db5_io.c's AVS_ADD off in db5_import_attributes
+  causes bad things to happen and it really shouldn't.
+
+* vrml exporter (and probably others) doesn't export primitives
+  directly as one might expect like the ray-tracers, only regions.
+
+* sketches extruded with non-square AB vectors results in inner sketch
+  components not getting scaled properly.
+
+* rtcheck is ignoring fastgen tagged geometry since no multioverlap
+  handler is set.
+
+* bot-bldxf fails in db_walk_tree(), interface may have changed
+
+
+Older Bugs
+----------
+
+* several manpages are missing or out of date for various tools
+
+* X11 framebuffer often fails to display on certain middle bit depth
+  displays. (e.g. 15 or 16 bit depth)
+
+* mk_lcomb fails on large combinations due to mk_tree_pure() building
+  a left-heavy tree and wdb_put_internal() then recursively performing
+  lookup and put calls.
+
+
+Annoyances
+----------
+
+* matrix edits on objects in mged require you to select a primitive
+  for a coordinate system reference.  this can be counterintuitive and
+  confusing.
+
+* there are frequently modality errors when entering edit mode as
+  control and middle mouse rebind to model edit instead of view edit.
+
+---
+Bugs should be reported to the bug tracker on the project website at
+http://sourceforge.net/tracker/?atid=640802&group_id=105292
+
+BUGS should be formatted to column 70 (M-q in emacs), no tabs.
+
+// Local Variables:
+// mode: Text
+// fill-column: 70
+// End:
